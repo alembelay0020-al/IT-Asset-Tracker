@@ -25,7 +25,7 @@ class ApiSecurityTests {
     @Test
     void categoriesShouldRejectUnauthenticatedRequest() throws Exception {
         mockMvc.perform(get("/api/categories"))
-                .andExpect(status().isForbidden());
+                .andExpect(status().isUnauthorized());
     }
 
     @Test
