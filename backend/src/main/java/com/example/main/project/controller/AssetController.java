@@ -1,4 +1,3 @@
-
 package com.example.main.project.controller;
 
 import java.util.List;
@@ -64,7 +63,7 @@ public class AssetController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    @PreAuthorize("hasAnyRole('ADMIN', 'STAFF')")
+    @PreAuthorize("hasRole('ADMIN')")
     public AssetResponse createAsset(
             @Valid @RequestBody AssetRequest request) {
         return assetService.createAsset(request);

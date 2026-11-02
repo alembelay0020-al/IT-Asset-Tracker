@@ -1,4 +1,3 @@
-
 package com.example.main.project;
 
 import java.util.UUID;
@@ -60,6 +59,15 @@ class ApiSecurityTests {
     void staffShouldBeAllowedToViewAssets() throws Exception {
         mockMvc.perform(get("/api/assets"))
                 .andExpect(status().isOk());
+    }
+
+    @Test
+    @WithMockUser(roles = "STAFF")
+    void staffShouldNotBeAllowedToCreateAssets() throws Exception {
+        mockMvc.perform(post("/api/assets")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content("{\"name\":\"Test Laptop\",\"serialNumber\":\"TEST-001\",\"categoryId\":1}"))
+                .andExpect(status().isForbidden());
     }
 
     @Test
